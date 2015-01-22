@@ -129,3 +129,23 @@ function pss() {
 
 # z directory jumper
 . ~/bin/z.sh
+
+function npm-upgrade() {
+	set -e
+	set -x
+ 
+	for package in $(npm -g outdated --parseable --depth=0 | cut -d: -f2)
+	do
+	    npm -g install "$package"
+	done
+}
+
+function npm-upgrad-bleeding() {
+	set -e
+	set -x
+	 
+	for package in $(npm -g outdated --parseable --depth=0 | cut -d: -f3)
+	do
+		npm -g install "$package"
+	done
+}
