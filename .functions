@@ -130,6 +130,17 @@ function pss() {
 # z directory jumper
 . ~/bin/z.sh
 
+# check if cam is connected
+function checkCam() {
+  system_profiler SPCameraDataType
+}
+
+# fix if VCDAssistant crashed your camera on MAC OS X
+function fixCam() {
+  sudo killall VDCAssistant
+}
+
+# fix unmet dependencies in npm (node package manager)
 function npm-upgrade() {
 	set -e
 	set -x
