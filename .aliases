@@ -50,4 +50,6 @@ alias pumpitup="osascript -e 'set volume 7'"
 alias show="defaults write com.apple.finder AppleShowAllFiles TRUE && killall Finder"
 alias unshow="defaults write com.apple.finder AppleShowAllFiles FALSE && killall Finder"
 
+alias t='python ~/Applications/t/t.py --task-dir ~/tasks --list tasks'
 
+source .git_commands

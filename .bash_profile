@@ -30,3 +30,13 @@ done
 
 # If possible, add tab completion for many more commands
 [ -f /etc/bash_completion ] && source /etc/bash_completion
+
+### history search
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+set show-all-if-ambiguous on
+set completion-ignore-case on
+
+### coreutils
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+export NODE_ENV=development
