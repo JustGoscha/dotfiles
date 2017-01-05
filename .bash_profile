@@ -1,10 +1,15 @@
+# too many open files fix
+ulimit -n 65536 65536  
+
 # Add `~/bin` to the `$PATH`
 export PATH="$HOME/bin:$PATH"
+DOTFILE_DIR=~/dotfiles
+
 
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
 # * ~/.extra can be used for other settings you don’t want to commit.
-for file in ~/.{path,bash_prompt,exports,aliases,functions,extra}; do
+for file in ${DOTFILE_DIR}/.{path,bash_prompt,exports,aliases,functions,extra}; do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file"
 done
 unset file
@@ -28,14 +33,15 @@ done
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
 [ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2 | tr ' ' '\n')" scp sftp ssh
 
-# If possible, add tab completion for many more commands
-[ -f /etc/bash_completion ] && source /etc/bash_completion
+# # On Mac OS install with brew and make link
+# ln -s /usr/local/Cellar/bash-completion/1.3_1/etc/bash_completion
+# # If possible, add tab completion for many more commands
+# [ -f /etc/bash_completion ] && source /etc/bash_completion
 
-### history search
-"\e[A": history-search-backward
-"\e[B": history-search-forward
-set show-all-if-ambiguous on
-set completion-ignore-case on
+# git completion
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    . $(brew --prefix)/etc/bash_completion
+fi
 
 ### coreutils
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
