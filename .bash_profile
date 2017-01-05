@@ -1,15 +1,16 @@
 # too many open files fix
-ulimit -n 65536 65536  
+ulimit -n 65536 65536
 
 # Add `~/bin` to the `$PATH`
 export PATH="$HOME/bin:$PATH"
 DOTFILE_DIR=~/dotfiles
+HISTTIMEFORMAT="%d/%m/%y %T "
 
 
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
 # * ~/.extra can be used for other settings you don’t want to commit.
-for file in ${DOTFILE_DIR}/.{path,bash_prompt,exports,aliases,functions,extra}; do
+for file in ${DOTFILE_DIR}/.{path,bash_prompt,exports,aliases,functions,extra,log_history}; do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file"
 done
 unset file

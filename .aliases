@@ -52,4 +52,7 @@ alias unshow="defaults write com.apple.finder AppleShowAllFiles FALSE && killall
 
 alias t='python ~/Applications/t/t.py --task-dir ~/tasks --list tasks'
 
+# search persistent history
+alias phgrep='cat ~/.persistent_history|grep --color'
+
 source ${DOTFILE_DIR}/.git_commands
